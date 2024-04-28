@@ -15,29 +15,32 @@
 
 # To reference Consumer Control codes, import ConsumerControlCode like so...
 from adafruit_hid.consumer_control_code import ConsumerControlCode
+from consumer import Toolbar
+
 # You can still import Keycode as well if a macro file mixes types!
 # See other macro files for typical Keycode examples.
 
 app = {               # REQUIRED dict, must be named 'app'
-    'name' : 'Media', # Application name
+    'name' : 'Media[]', # Application name
+    'order' : 3,
     'macros' : [      # List of button macros...
         # COLOR    LABEL    KEY SEQUENCE
         # 1st row ----------
         ('', []),
-        ('Vol+', [[ConsumerControlCode.VOLUME_INCREMENT]]),
-        ('Bright+', [[ConsumerControlCode.BRIGHTNESS_INCREMENT]]),
+        ('Vol+', [Toolbar(ConsumerControlCode.VOLUME_INCREMENT)]),
+        ('Bright+', [Toolbar(ConsumerControlCode.BRIGHTNESS_INCREMENT)]),
         # 2nd row ----------
         ('', []),
-        ('Vol-', [[ConsumerControlCode.VOLUME_DECREMENT]]),
-        ('Bright-', [[ConsumerControlCode.BRIGHTNESS_DECREMENT]]),
+        ('Vol-', [Toolbar(ConsumerControlCode.VOLUME_DECREMENT)]),
+        ('Bright-', [Toolbar(ConsumerControlCode.BRIGHTNESS_DECREMENT)]),
         # 3rd row ----------
         ('', []),
-        ('Mute', [[ConsumerControlCode.MUTE]]),
+        ('Mute', [Toolbar(ConsumerControlCode.MUTE)]),
         ('', []),
         # 4th row ----------
-        ('<<', [[ConsumerControlCode.SCAN_PREVIOUS_TRACK]]),
-        ('Play/Pause', [[ConsumerControlCode.PLAY_PAUSE]]),
-        ('>>', [[ConsumerControlCode.SCAN_NEXT_TRACK]]),
+        ('<<', [Toolbar(ConsumerControlCode.SCAN_PREVIOUS_TRACK)]),
+        ('Play/Pause', [Toolbar(ConsumerControlCode.PLAY_PAUSE)]),
+        ('>>', [Toolbar(ConsumerControlCode.SCAN_NEXT_TRACK)]),
         # Encoder button ---
         ('', [])
     ]
