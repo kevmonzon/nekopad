@@ -1,5 +1,6 @@
 # MACROPAD Hotkeys: blank screen for idle
 # Contributed by GitHub @vitoni
+from customfunction import CustomFunction
 
 
 app = {                      # REQUIRED dict, must be named 'app'
@@ -24,6 +25,6 @@ app = {                      # REQUIRED dict, must be named 'app'
         ('',          []),
         ('',          []),
         # Encoder button ---
-        ('',          [])
+        ('',          []),
     ]
 }

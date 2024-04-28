@@ -12,7 +12,7 @@ sleeping = False
 last_encoder_switch = macropad.encoder_switch_debounced.pressed
 app_index = 0
 
-screen.splash_screen(file = 'splash.bmp', seconds = 1)
+# screen.splash_screen(file = 'splash.bmp', seconds = 1)
 screen.initialize()
 apps = App.load_all(MACRO_FOLDER)
 
@@ -72,7 +72,7 @@ while True:
                     keyfactory.get(item).press(macropad)
         else: # We just have a single command to execute
             keyfactory.get(sequence).press(macropad)
-                
+
     else:
         if type(sequence) is list: 
             for item in sequence:
