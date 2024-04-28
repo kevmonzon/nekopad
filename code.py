@@ -1,3 +1,10 @@
+## NOTES
+# https://github.com/deckerego/Macropad_Hotkeys
+
+
+
+
+
 # SPDX-FileCopyrightText: 2021 Phillip Burgess for Adafruit Industries
 #
 # SPDX-License-Identifier: MIT
@@ -228,7 +235,7 @@ while True:
       elif isinstance(item, dict):
         if "buttons" in item:
           if item["buttons"] >= 0:
-              macropad.mouse.release(item["buttons"])
+            macropad.mouse.release(item["buttons"])
     macropad.consumer_control.release()
 
 

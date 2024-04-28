@@ -2,9 +2,6 @@ import busio
 import adafruit_displayio_ssd1306
 from displayio import I2CDisplay as I2CDisplayBus
 
-import array
-import math
-import time
 import board
 import digitalio
 import rotaryio
