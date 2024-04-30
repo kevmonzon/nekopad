@@ -8,8 +8,10 @@ MACRO_FOLDER = '/macros'
 macropad = MacroPad()
 screen = Display(macropad)
 last_position = None
+last_position2 = 0
 sleeping = False
 last_encoder_switch = macropad.encoder_switch_debounced.pressed
+last_encoder_switch2 = macropad.encoder2_switch_debounced.pressed
 app_index = 0
 
 # screen.splash_screen(file = 'splash.bmp', seconds = 1)
@@ -30,6 +32,33 @@ except OSError as err:
         pass
 
 while True:
+
+    ## treat encoder2 as input
+    position2 = macropad.encoder2
+
+    # if position2 != last_position2:
+    if position2 > last_position2:
+        print('++')
+    if position2 < last_position2:
+        print('--')
+
+    macropad.encoder2_switch_debounced.update()
+    encoder2_switch = macropad.encoder2_switch_debounced.pressed
+
+    if encoder2_switch != last_encoder_switch2:
+        last_encoder_switch2 = encoder2_switch
+        key_number = 13
+        pressed = encoder2_switch
+        print(encoder2_switch)
+    else:
+        event = macropad.keys.events.get()
+        if not event or event.key_number >= len(app[app_index].macros):
+            continue
+        key_number = event.key_number
+        pressed = event.pressed
+
+
+
     position = macropad.encoder
     if position != last_position:
         last_position = position
