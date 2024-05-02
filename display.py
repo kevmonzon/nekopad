@@ -8,7 +8,7 @@ class Display:
     def __init__(self, macropad):
         self.macropad = macropad
         self.display = macropad.display
-        self.display.auto_refresh = True
+        self.display.auto_refresh = False
 
     def initialize(self):
         self.group = displayio.Group()
@@ -38,12 +38,12 @@ class Display:
 
     def sleep(self):
         self.display.brightness = 0
-        self.display.show(displayio.Group())
+        self.display.root_group = displayio.Group()
         self.display.refresh()
 
     def resume(self):
         self.display.brightness = 1
-        self.display.show(self.group)
+        self.display.root_group = self.group
         self.display.refresh()
 
     def setApp(self, app):

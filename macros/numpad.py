@@ -28,6 +28,10 @@ app = {                # REQUIRED dict, must be named 'app'
         ('.', Keycode.KEYPAD_PERIOD),
         ('=', Keycode.KEYPAD_ENTER),
         # Encoder button ---
-        ('', Keycode.BACKSPACE)
+        ('', Keycode.BACKSPACE),
+        # Encoder <<
+        ('', Keycode.LEFT_ARROW),
+        # Encoder >>
+        ('', Keycode.RIGHT_ARROW),
     ]
 }
