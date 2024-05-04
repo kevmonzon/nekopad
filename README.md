@@ -5,6 +5,7 @@ A derivative of the
 example from the
 [Adafruit Learning System Guide](https://learn.adafruit.com/macropad-hotkeys/project-code).
 
+* Uses derived code from [deckerego/Macropad_Hotkeys](https://github.com/deckerego/Macropad_Hotkeys)
 
 # Hardware
 * Raspberry Pico W
