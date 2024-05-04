@@ -1,8 +1,0 @@
-Adafruit CircuitPython 9.0.4 on 2024-04-16; Raspberry Pi Pico W with rp2040
-Board ID:raspberry_pi_pico_w
-UID:E6614104039D5322
-MAC:28:CD:C1:0A:EC:0B
-[2K[0Gboot.py output:
-Traceback (most recent call last):
-  File "boot.py", line 7, in <module>
-AttributeError: 'module' object has no attribute 'BUTTON'
