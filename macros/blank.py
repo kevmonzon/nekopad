@@ -1,7 +1,4 @@
 ## TEMPLATE
-from typing import Text
-
-
 app = {                      # (required) dict, must be named 'app'
     'name' : '',            # (required) Application name
     # 'order' : 0,           # (optional) order in menu
