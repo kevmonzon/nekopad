@@ -2,7 +2,8 @@ import keyfactory
 from adafruit_macropad import MacroPad
 from app import App
 from display import Display
-
+import time
+import rtc
 MACRO_FOLDER = "/macros"
 
 macropad = MacroPad()
@@ -16,8 +17,8 @@ last_encoder_switch2 = macropad.encoder_switch_debounced2.pressed
 key_count = 15  # key count
 app_index = 0
 
-screen.splash_screen(file = 'splash.bmp', seconds = 1)
-screen.initialize()
+# screen.splash_screen(file="splash.bmp", seconds=1)
+# screen.initialize()
 apps = App.load_all(MACRO_FOLDER)
 
 if not apps:
@@ -33,7 +34,16 @@ except OSError as err:
     while True:
         pass
 
+prevTime = 0
+timePassed = 0
 while True:
+    ## refresh screen whenever
+    if timePassed == 3:
+        screen.initialize()
+        screen.setApp(apps[app_index])
+        timePassed = 0
+    timePassed = timePassed + (int(time.monotonic()) - prevTime)
+    prevTime = int(time.monotonic())
 
     ## handles rot.enc.1 for selecting apps
     position = macropad.encoder
@@ -41,10 +51,10 @@ while True:
         last_position = position
         app_index = position % len(apps)
         macropad.keyboard.release_all()
+        screen.initialize()  ## re-init screen for stuff
         screen.setApp(apps[app_index])
 
     ### HANDLES KEYPRESSES
-
     macropad.encoder_switch_debounced.update()
     macropad.encoder_switch_debounced2.update()
     encoder_switch = macropad.encoder_switch_debounced.pressed

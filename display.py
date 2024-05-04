@@ -8,7 +8,9 @@ class Display:
     def __init__(self, macropad):
         self.macropad = macropad
         self.display = macropad.display
-        self.display.auto_refresh = False
+        self.display.auto_refresh = True
+        self.group = None
+        self.current_app_group = None
 
     def initialize(self):
         self.group = displayio.Group()
@@ -35,6 +37,7 @@ class Display:
             )
         )
         self.display.root_group = self.group
+        self.current_app_group = self.group
 
     def sleep(self):
         self.display.brightness = 0
@@ -54,6 +57,7 @@ class Display:
             else:
                 self.group[i].text = ''
         self.display.refresh()
+        self.current_app_group = self.group
 
     def setTitle(self, text):
         self.group[13].text = text
@@ -66,3 +70,10 @@ class Display:
             self.macropad.display_image(file)
             self.display.refresh()
             time.sleep(seconds)
+
+    def set_custom_display(self, group):
+        self.macropad.root_group = group
+
+    def reset_display(self):
+        self.macropad.root_group = self.current_app_group
+        self.display.refresh()

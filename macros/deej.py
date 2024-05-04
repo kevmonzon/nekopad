@@ -1,14 +1,14 @@
+
 # MACROPAD Hotkeys: Deej Compatibility
 
 from customfunction import CustomFunction
-
+import time
 VOL_UP = "VOLUP"
 VOL_DOWN = "VOLDOWN"
 MUTE = "MUTE"
 selectedApp = None
 appValues = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
 appSwitches = [True, True, True, True, True, True, True, True, True, True, True, True]
-
 
 def setApp(macropad, *args, **kwargs):
     global selectedApp
@@ -20,8 +20,8 @@ def sendValues(macropad, *args, **kwargs):
     if selectedApp is None:
         print("No app")
         return
-    global appValues
-    global appSwitches
+    # global appValues
+    # global appSwitches
     if kwargs["command"] == VOL_UP:
         appValues[selectedApp] = appValues[selectedApp] + 1
         if appValues[selectedApp] > 100:
@@ -41,6 +41,45 @@ def sendValues(macropad, *args, **kwargs):
             out.append(str(int(1023 * (v / 100))))
     string = "|".join(out)
     print(string)
+    display_volume_screen(macropad, app["macros"][selectedApp][0], appValues[selectedApp])
+
+
+## display override then time out
+import displayio
+from adafruit_display_text import label
+from adafruit_display_shapes.rect import Rect
+import terminalio
+
+from display import Display
+
+def display_volume_screen(macropad, title='', volume=0):
+    previous_group = macropad.display.root_group
+    group = displayio.Group()
+    group.append(Rect(0, 0, 128, 12, fill=0xFFFFFF))
+    group.append(
+        label.Label(
+            terminalio.FONT,
+            text=title,
+            color=0x000000,
+            anchored_position=(62, 0),
+            anchor_point=(0.5, 0.0)
+        )
+    )
+    group.append(
+        label.Label(
+            terminalio.FONT,
+            text=str(volume)+"%",
+            anchored_position=(64,25),
+            anchor_point=(0.5,0.5)
+        )
+    )
+    box_vol = int(128 * (volume/100))
+    group.append(Rect(0, 40, box_vol, 24, fill=0xFFFFFF))
+    macropad.display.root_group = group
+
+    display = Display(macropad)
+    display.reset_display()
+
 
 app = {
     "name": "Deej",
