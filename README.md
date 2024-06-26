@@ -22,6 +22,11 @@ example from the
   * GP18-21
 * Display
   * GP26-27
+ 
+ https://wokwi.com/projects/401759947924623361
+ 
+ ![image](https://github.com/kevmonzon/nekopad/assets/2438714/b195bd1c-b673-4cc6-b0c5-9fda3894d7e8)
+
 
 # Modifications
 * Derivative of Adafruit Macropad Hardware and Software
