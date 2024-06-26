@@ -35,19 +35,13 @@ example from the
 * No speaker, no RGB
 * +1 Rotary encoder
 
-## Using
-
-Example implementation is provided at `sd/_template.py_`
-
-Create a file under `macros/` and add 
+## Configuration and Using the Nekopad
 
 
-## Configuration
 
 The `macros/` folder has a list of macro templates to chose from, all of which
-can be altered at your whim. First make sure to mount your Macropad in read/write
-mode (see [Updating](#updating)) and then open up the `.py` examples in the
-`macros/` folder. Note that each has a list of settings, including:
+can be altered at your whim. Example implementation is provided at `sd/_template.py_`.
+Note that each has a list of settings, including:
 
 - The name that will show at the top of the OLED display
 - The sequential order that it will be shown when rotating the encoder dial
